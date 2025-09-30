@@ -6,6 +6,7 @@ import br.com.AppMusic.service.ConverteDados;
 import br.com.AppMusic.service.JogoRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Principal {
@@ -57,7 +58,7 @@ public class Principal {
                 case(2):
                     buscarJogoSalvo();
                 case(3):
-
+                    buscarJogoPorNome();
                 case(4):
 
                 case(0):
@@ -65,6 +66,7 @@ public class Principal {
             }
         }
     }
+
 
     private void buscarJogo() {
         String response = api.fazerBusca();
@@ -80,6 +82,20 @@ public class Principal {
             jogosSalvos.forEach(System.out::println);
         } else {
             System.out.println("Ainda nao possui nenhum jogo salvo! ");
+        }
+    }
+
+    private void buscarJogoPorNome() {
+        System.out.println("Digite o nome do Jogo que deseja buscar: ");
+        l.nextLine();
+        String nomeJogo = l.nextLine();
+        List<Jogo> buscaJogo = repository.buscarJogoPorNome(nomeJogo);
+
+        if (!buscaJogo.isEmpty()){
+            System.out.println("Jogo encontrado...");
+            System.out.println(buscaJogo);
+        } else {
+            System.out.println("Não achamos nenhum jogo com esse nome.");
         }
     }
 
