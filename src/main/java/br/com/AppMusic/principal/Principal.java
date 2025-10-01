@@ -2,12 +2,15 @@ package br.com.AppMusic.principal;
 import br.com.AppMusic.model.DadosJogo;
 import br.com.AppMusic.model.Jogo;
 import br.com.AppMusic.service.ApiJogos;
+import br.com.AppMusic.service.ConsultaGemini;
 import br.com.AppMusic.service.ConverteDados;
 import br.com.AppMusic.service.JogoRepository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
+import static br.com.AppMusic.service.ConsultaGemini.obterInfoJogo;
 
 public class Principal {
 
@@ -24,6 +27,7 @@ public class Principal {
     ApiJogos api = new ApiJogos();
     ConverteDados converteDados = new ConverteDados();
     Scanner l = new Scanner(System.in);
+    ConsultaGemini consultaGemini = new ConsultaGemini();
 
 
 
@@ -102,9 +106,21 @@ public class Principal {
         List<Jogo> jogosDisponiveis = repository.findAll();
         if (!jogosDisponiveis.isEmpty()){
             System.out.println("Qual desses jogos voce quer buscar sobre? \n");
+
             jogosDisponiveis.forEach(System.out::println);
+            l.nextLine();
             String nomeJogo = l.nextLine();
-            Optional<Jogo> jogo = repository.findFirstByNomeContainingIgnoreCase(nomeJogo);
+
+            Optional<Jogo> jogoEncontrado = repository.findFirstByNomeContainingIgnoreCase(nomeJogo);
+            if(jogoEncontrado.isPresent()){
+                String jogo = jogoEncontrado.get().getNome();
+                String descricaoJogo = obterInfoJogo(jogo);
+                System.out.println("\n" + descricaoJogo);
+            } else {
+                System.out.println("Jogo nao encontrado");
+            }
+        } else{
+            System.out.println("Voce nao salvou nenhum jogo na lista ate o momento!");
         }
     }
 
