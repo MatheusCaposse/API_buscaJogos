@@ -12,4 +12,6 @@ public interface JogoRepository extends JpaRepository<Jogo, Long> {
 
     @Query("SELECT j FROM Jogo j WHERE LOWER(j.nome) LIKE LOWER(CONCAT('%', :nomeJogo, '%'))")
     List<Jogo> buscarJogoPorNome(@Param("nomeJogo")String nomeJogo);
+
+    Optional<Jogo> findFirstByNomeContainingIgnoreCase(String nomeJogo);
 }

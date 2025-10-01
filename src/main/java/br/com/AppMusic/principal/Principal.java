@@ -60,13 +60,12 @@ public class Principal {
                 case(3):
                     buscarJogoPorNome();
                 case(4):
-
+                    buscarSobreJogo();
                 case(0):
                     break;
             }
         }
     }
-
 
     private void buscarJogo() {
         String response = api.fazerBusca();
@@ -96,6 +95,16 @@ public class Principal {
             System.out.println(buscaJogo);
         } else {
             System.out.println("Não achamos nenhum jogo com esse nome.");
+        }
+    }
+
+    private void buscarSobreJogo() {
+        List<Jogo> jogosDisponiveis = repository.findAll();
+        if (!jogosDisponiveis.isEmpty()){
+            System.out.println("Qual desses jogos voce quer buscar sobre? \n");
+            jogosDisponiveis.forEach(System.out::println);
+            String nomeJogo = l.nextLine();
+            Optional<Jogo> jogo = repository.findFirstByNomeContainingIgnoreCase(nomeJogo);
         }
     }
 
