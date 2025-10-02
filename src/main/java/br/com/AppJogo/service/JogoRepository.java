@@ -1,6 +1,6 @@
-package br.com.AppMusic.service;
+package br.com.AppJogo.service;
 
-import br.com.AppMusic.model.Jogo;
+import br.com.AppJogo.model.Jogo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

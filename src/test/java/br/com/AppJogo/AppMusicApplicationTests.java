@@ -1,4 +1,4 @@
-package br.com.AppMusic;
+package br.com.AppJogo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

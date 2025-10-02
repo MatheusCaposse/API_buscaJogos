@@ -1,16 +1,16 @@
-package br.com.AppMusic.principal;
-import br.com.AppMusic.model.DadosJogo;
-import br.com.AppMusic.model.Jogo;
-import br.com.AppMusic.service.ApiJogos;
-import br.com.AppMusic.service.ConsultaGemini;
-import br.com.AppMusic.service.ConverteDados;
-import br.com.AppMusic.service.JogoRepository;
+package br.com.AppJogo.principal;
+import br.com.AppJogo.model.DadosJogo;
+import br.com.AppJogo.model.Jogo;
+import br.com.AppJogo.service.ApiJogos;
+import br.com.AppJogo.service.ConsultaGemini;
+import br.com.AppJogo.service.ConverteDados;
+import br.com.AppJogo.service.JogoRepository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import static br.com.AppMusic.service.ConsultaGemini.obterInfoJogo;
+import static br.com.AppJogo.service.ConsultaGemini.obterInfoJogo;
 
 public class Principal {
 
@@ -61,10 +61,13 @@ public class Principal {
                     break;
                 case(2):
                     buscarJogoSalvo();
+                    break;
                 case(3):
                     buscarJogoPorNome();
+                    break;
                 case(4):
                     buscarSobreJogo();
+                    break;
                 case(0):
                     break;
             }
@@ -73,9 +76,14 @@ public class Principal {
 
     private void buscarJogo() {
         String response = api.fazerBusca();
-        List<DadosJogo> dados = converteDados.converterLista(response, DadosJogo.class );
-        Jogo jogoNovo = new Jogo(dados.get(0));
-        repository.save(jogoNovo);
+        try{
+            List<DadosJogo> dados = converteDados.converterLista(response, DadosJogo.class );
+            Jogo jogoNovo = new Jogo(dados.get(0));
+            repository.save(jogoNovo);
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Jogo nao encontrado");
+        }
+
     }
 
     private void buscarJogoSalvo() {

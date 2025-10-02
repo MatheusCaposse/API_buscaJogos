@@ -1,4 +1,4 @@
-package br.com.AppMusic.service;
+package br.com.AppJogo.service;
 
 import java.io.IOException;
 import java.net.URI;

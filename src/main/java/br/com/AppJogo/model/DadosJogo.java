@@ -1,4 +1,4 @@
-package br.com.AppMusic.model;
+package br.com.AppJogo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

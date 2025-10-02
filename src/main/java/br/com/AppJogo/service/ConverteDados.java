@@ -1,4 +1,4 @@
-package br.com.AppMusic.service;
+package br.com.AppJogo.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;

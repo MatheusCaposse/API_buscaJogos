@@ -1,4 +1,4 @@
-package br.com.AppMusic.service;
+package br.com.AppJogo.service;
 
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentResponse;

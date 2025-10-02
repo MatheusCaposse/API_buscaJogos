@@ -1,7 +1,7 @@
-package br.com.AppMusic;
+package br.com.AppJogo;
 
-import br.com.AppMusic.principal.Principal;
-import br.com.AppMusic.service.JogoRepository;
+import br.com.AppJogo.principal.Principal;
+import br.com.AppJogo.service.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
